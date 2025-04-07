@@ -1,0 +1,25 @@
+_BASE_: "../Base-BoxSeg.yaml"
+MODEL:
+  WEIGHTS: "/path/workspace/pretrained_models/detectron2/R-101.pkl"
+  RESNETS:
+    DEPTH: 101
+    DEFORM_ON_PER_STAGE: [False, True, True, True]
+    STRIDE_IN_1X1: False
+    DEFORM_MODULATED: True
+
+  PROTO_ON: False
+  WITH_PROTOTYPE_LOSS: False
+  USE_VFL: True
+
+  COPYPASTE_ON: True
+  COPYPASTE_TYPE: "instance"
+
+  BOX_TEACHER:
+    MASK_AFFINITY_BINARY: True
+    TEACHER_WITH_NMS: False
+    DYNAMIC_MASK_THRESH: False
+
+SOLVER:
+  STEPS: (210000, 250000)
+  MAX_ITER: 270000
+OUTPUT_DIR: "output/boxseg_r101_DCN_3x"

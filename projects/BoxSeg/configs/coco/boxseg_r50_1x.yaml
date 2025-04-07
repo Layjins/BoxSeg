@@ -1,0 +1,19 @@
+_BASE_: "../Base-BoxSeg.yaml"
+MODEL:
+  WEIGHTS: "/path/workspace/pretrained_models/detectron2/R-50.pkl"
+  RESNETS:
+    DEPTH: 50
+
+  PROTO_ON: False
+  WITH_PROTOTYPE_LOSS: False
+  USE_VFL: True
+
+  COPYPASTE_ON: True
+  COPYPASTE_TYPE: "instance"
+
+  BOX_TEACHER:
+    MASK_AFFINITY_BINARY: True
+    TEACHER_WITH_NMS: False
+    DYNAMIC_MASK_THRESH: False
+
+OUTPUT_DIR: "output/boxseg_r50_1x"
